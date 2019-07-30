@@ -1,0 +1,13 @@
+<div class="card bg-dark text-white" (mouseover)="show = true" (mouseleave)="show = false">
+    <img *ngIf="image.type == 'image' || image.type == 'galeria'" [src]="image.url" class="card-img" alt="...">
+    <img *ngIf="image.type == 'video'" [src]="image.thumbnail.url" class="card-img" alt="...">
+    <div class="card-img-overlay" *ngIf="!imageSelected && show">
+        <h5 class="card-title">{{image.name}}</h5>
+        <p *ngIf="image.type == 'image' || image.type == 'galeria'" class="card-text">{{image.width}}x{{image.height}}</p>
+        <p *ngIf="image.type == 'video'" class="card-text">{{image.thumbnail.width}}x{{image.thumbnail.height}}</p>
+        <p class="card-text">Licencia: {{image.license}}</p>
+        <div class="float-right" *ngIf="show">
+            <button type="button" class="btn btn-primary" [mat-dialog-close]="image">INSERTAR</button>
+        </div>
+    </div>
+</div>

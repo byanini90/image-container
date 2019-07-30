@@ -1,0 +1,15 @@
+<div class="container">    
+    <div class="card-columns m-5">
+        <app-infinite-scroll (scrolled)="onScroll()">
+            <app-image [image]="image" *ngFor="let image of images$ | async"></app-image>
+            <div *ngIf="isLoading$ | async" class="text-center m-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </app-infinite-scroll>
+    </div>
+    <div *ngIf="countImages === 0" class="alert alert-info m-5" role="alert">
+        0 ELEMENTOS ENCONTRADOS
+    </div>
+</div>
