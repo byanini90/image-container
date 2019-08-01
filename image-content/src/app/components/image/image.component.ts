@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ImageData } from '../../api/models/imageData';
+import { ImageDetail } from '../../api/models/imageDetail';
 
 @Component({
   selector: 'app-image',
@@ -8,10 +8,7 @@ import { ImageData } from '../../api/models/imageData';
 })
 export class ImageComponent implements OnInit {
 
-  @Input() image: ImageData;
-  @Input() imageSelected: boolean = false;
-
-  @Output() closeModal?: EventEmitter<void> = new EventEmitter();
+  @Input() image: ImageDetail;
 
   show: boolean = false;
 

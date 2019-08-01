@@ -1,13 +1,23 @@
-<div class="card bg-dark text-white" (mouseover)="show = true" (mouseleave)="show = false">
-    <img *ngIf="image.type == 'image' || image.type == 'galeria'" [src]="image.url" class="card-img" alt="...">
-    <img *ngIf="image.type == 'video'" [src]="image.thumbnail.url" class="card-img" alt="...">
-    <div class="card-img-overlay" *ngIf="!imageSelected && show">
-        <h5 class="card-title">{{image.name}}</h5>
-        <p *ngIf="image.type == 'image' || image.type == 'galeria'" class="card-text">{{image.width}}x{{image.height}}</p>
-        <p *ngIf="image.type == 'video'" class="card-text">{{image.thumbnail.width}}x{{image.thumbnail.height}}</p>
-        <p class="card-text">Licencia: {{image.license}}</p>
-        <div class="float-right" *ngIf="show">
-            <button type="button" class="btn btn-primary" [mat-dialog-close]="image">INSERTAR</button>
+<div class="card bg-light text-black" (mouseover)="show = true" (mouseleave)="show = false">
+    <img [src]="image.main_attachment.big" class="card-img-top" alt="image.title">
+    <div class="card-body">
+        <h5 class="card-title">{{image.title | uppercase}}</h5>
+        <p class="card-text">by {{image.author}}</p>
+    </div>
+    <div class="card-img-overlay gradient-black-transparent" *ngIf="show">
+        <div class="row">
+            <div class="col-9"></div>
+            <div class="col-3 text-center text-white">
+                <button class="btn" (click)="(image.liked) ? image.likes_count = image.likes_count - 1 : image.likes_count = image.likes_count + 1; image.liked = !image.liked;"><img [src]="image.liked ? 'assets/img/like.png' : 'assets/img/dislike.png'"></button>
+                <p>{{image.likes_count}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-9"></div>
+            <div class="col-3 text-center text-white">
+                <button class="btn" (click)="image.likes_count = 0; image.liked = false;"><img src="assets/img/reset.png"></button>
+                <p>000</p>
+            </div>
         </div>
     </div>
 </div>
